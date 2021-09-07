@@ -50,9 +50,11 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'douban.middlewares.DoubanDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+   #'douban.middlewares.DoubanDownloaderMiddleware': 543,
+   'douban.middlewares.my_proxy': 543,
+   'douban.middlewares.my_useragent': 544,
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -64,6 +66,8 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'douban.pipelines.DoubanPipeline': 300,
+   'douban.pipelines.DoubanMysqlPipeline': 200,
+
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -87,7 +91,19 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
+
+
+
 mongo_host = '127.0.0.1'
 mongo_port = 27017
 mongo_dbname = 'douban'
 mongo_db_collection = 'douban_movie'
+
+mysql_host = '127.0.0.1'
+mysql_port = 3306
+mysql_dbname = 'douban'
+mysql_username = 'root'
+mysql_password = ''
+
+
+
